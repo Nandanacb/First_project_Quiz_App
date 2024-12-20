@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:quizapp_quizzapp/quizscreen.dart';
@@ -27,14 +25,13 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(252, 123, 32, 139),
+      backgroundColor: const Color.fromARGB(255, 230, 134, 214),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               SizedBox(height: 300),
-             
               SizedBox(
                 height: 50,
                 width: 300,
@@ -133,7 +130,10 @@ class _LoginpageState extends State<Loginpage> {
                     },
                     child: Text(
                       "Login",
-                      style: TextStyle(fontSize: 20, color: Colors.purple),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.purple,
+                          fontWeight: FontWeight.bold),
                     )),
               ),
               SizedBox(height: 35),

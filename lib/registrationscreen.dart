@@ -24,7 +24,7 @@ class _RegistrationpageState extends State<Registrationpage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(252, 123, 32, 139),
+      backgroundColor: const Color.fromARGB(255, 230, 134, 214),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(25),
@@ -140,8 +140,7 @@ class _RegistrationpageState extends State<Registrationpage> {
                       },
                       child: Text(
                         "Log In",
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 228, 156, 240)),
+                        style: TextStyle(color: Colors.purple),
                       )),
                 ],
               )

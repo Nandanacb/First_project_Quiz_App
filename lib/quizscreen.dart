@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quizapp_quizzapp/answercard.dart';
+import 'package:quizapp_quizzapp/loginscreen.dart';
 import 'package:quizapp_quizzapp/nextbutton.dart';
 import 'package:quizapp_quizzapp/questions.dart';
+import 'package:quizapp_quizzapp/registrationscreen.dart';
 import 'package:quizapp_quizzapp/resultscreen.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -19,14 +21,15 @@ class _QuizScreenState extends State<QuizScreen> {
 
   late Stream<QuerySnapshot> quizappStream;
   List<Question> quizQuestions = [
-
-    Question(correctAnswerIndex: 1, 
-question: 'What widget would you use for repeating content in flutter?', options: [
-      'A)  ExpandedView',
-      'B)  ListView',
-      'C)  Stack',
-      'D)  ArrayView',
-    ]),
+    Question(
+        correctAnswerIndex: 1,
+        question: 'What widget would you use for repeating content in flutter?',
+        options: [
+          'A)  ExpandedView',
+          'B)  ListView',
+          'C)  Stack',
+          'D)  ArrayView',
+        ]),
     Question(
         correctAnswerIndex: 0,
         question:
@@ -37,8 +40,7 @@ question: 'What widget would you use for repeating content in flutter?', options
           'C)  config.html',
           'D)  root.xml',
         ]),
-
-         Question(
+    Question(
         correctAnswerIndex: 2,
         question:
             'Who developed the flutter framework and continues to maintain it today?',
@@ -48,7 +50,6 @@ question: 'What widget would you use for repeating content in flutter?', options
           'C)  Google',
           'D)  Oracle',
         ]),
-
     Question(
         correctAnswerIndex: 1,
         question:
@@ -61,7 +62,8 @@ question: 'What widget would you use for repeating content in flutter?', options
         ]),
     Question(
         correctAnswerIndex: 1,
-        question: 'Which component allows us to specify the distance between widgets on the screen?',
+        question:
+            'Which component allows us to specify the distance between widgets on the screen?',
         options: [
           'A)  SafeArea',
           'B)  SizedBox',
@@ -118,14 +120,7 @@ question: 'What widget would you use for repeating content in flutter?', options
           'C)  Graph-based',
           'D)  Sim-based',
         ]),
-    
   ];
-
-
-
-
-
-
 
   @override
   void initState() {
@@ -150,9 +145,8 @@ question: 'What widget would you use for repeating content in flutter?', options
           score++;
         });
         print("Correct! Score: $score");
-      }else{
-         print("Incorrect. Score: $score");
-      
+      } else {
+        print("Incorrect. Score: $score");
       }
     }
   }
@@ -164,7 +158,11 @@ question: 'What widget would you use for repeating content in flutter?', options
         selectedAnswerIndex = null;
       } else {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => ResultScreen(score: score, totalQuestions: quizQuestions.length,)),
+          MaterialPageRoute(
+              builder: (_) => ResultScreen(
+                    score: score,
+                    totalQuestions: quizQuestions.length,
+                  )),
         );
       }
     });
@@ -185,7 +183,19 @@ question: 'What widget would you use for repeating content in flutter?', options
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
-        centerTitle: true,
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Registrationpage()));
+              },
+              child: Text(
+                "Logout",
+                style: TextStyle(color: Colors.white),
+              )),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: quizappStream, // Stream of Firestore data
@@ -215,13 +225,13 @@ question: 'What widget would you use for repeating content in flutter?', options
               Padding(
                 padding: const EdgeInsets.all(25),
                 child: Text(
-                   quizQuestions[questionIndex].question,
+                  quizQuestions[questionIndex].question,
                   style: const TextStyle(fontSize: 20, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(height: 47),
-            /*  Container(
+              /*  Container(
                 height: 500,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -230,58 +240,59 @@ question: 'What widget would you use for repeating content in flutter?', options
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20)),
                     color: Colors.white),
-                child: */Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: question.options.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: selectedAnswerIndex == null
-                                ? () => pickAnswer(index)
-                                : null,
-                            child: AnswerCard(
-                              currentIndex: index,
-                              question: question.options[index],
-                              isSelected: selectedAnswerIndex == index,
-                              selectedAnswerIndex: selectedAnswerIndex,
-                              correctAnswerIndex: question.correctAnswerIndex,
-                              isAnswerCorrect: selectedAnswerIndex != null &&
-                                  selectedAnswerIndex ==
-                                      question.correctAnswerIndex,
-                              isAnswerIncorrect: selectedAnswerIndex != null &&
-                                  selectedAnswerIndex !=
-                                      question.correctAnswerIndex,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    isLastQuestion
-                        ? MyTextButton(
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (_) => ResultScreen(
-                                    score: score, totalQuestions: quizQuestions.length,
-                                    
-                                  ),
-                                ),
-                              );
-                            },
-                            label: 'Finish',
-                          )
-                        : MyTextButton(
-                            onPressed: selectedAnswerIndex != null
-                                ? goToNextQuestion
-                                : null,
-                            label: 'Next',
+                child: */
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: question.options.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: selectedAnswerIndex == null
+                              ? () => pickAnswer(index)
+                              : null,
+                          child: AnswerCard(
+                            currentIndex: index,
+                            question: question.options[index],
+                            isSelected: selectedAnswerIndex == index,
+                            selectedAnswerIndex: selectedAnswerIndex,
+                            correctAnswerIndex: question.correctAnswerIndex,
+                            isAnswerCorrect: selectedAnswerIndex != null &&
+                                selectedAnswerIndex ==
+                                    question.correctAnswerIndex,
+                            isAnswerIncorrect: selectedAnswerIndex != null &&
+                                selectedAnswerIndex !=
+                                    question.correctAnswerIndex,
                           ),
-                  ],
-                ),
-             // ),
+                        );
+                      },
+                    ),
+                  ),
+                  isLastQuestion
+                      ? MyTextButton(
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => ResultScreen(
+                                  score: score,
+                                  totalQuestions: quizQuestions.length,
+                                ),
+                              ),
+                            );
+                          },
+                          label: 'Finish',
+                        )
+                      : MyTextButton(
+                          onPressed: selectedAnswerIndex != null
+                              ? goToNextQuestion
+                              : null,
+                          label: 'Next',
+                        ),
+                ],
+              ),
+              // ),
             ],
           );
         },

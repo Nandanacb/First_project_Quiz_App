@@ -183,19 +183,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Registrationpage()));
-              },
-              child: Text(
-                "Logout",
-                style: TextStyle(color: Colors.white),
-              )),
-        ],
+        centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: quizappStream, // Stream of Firestore data

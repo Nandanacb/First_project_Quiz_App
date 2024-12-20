@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizapp_quizzapp/quizscreen.dart';
+import 'package:quizapp_quizzapp/registrationscreen.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({
@@ -71,8 +72,10 @@ class ResultScreen extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => QuizScreen()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Registrationpage()));
                 },
                 child: Text(
                   "Restart",

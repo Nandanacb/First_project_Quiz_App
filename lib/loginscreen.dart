@@ -25,7 +25,7 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 230, 134, 214),
+      backgroundColor: const Color.fromARGB(252, 123, 32, 139),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(15),
@@ -36,6 +36,7 @@ class _LoginpageState extends State<Loginpage> {
                 height: 50,
                 width: 300,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: usernameController,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -57,6 +58,7 @@ class _LoginpageState extends State<Loginpage> {
                 height: 50,
                 width: 300,
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(

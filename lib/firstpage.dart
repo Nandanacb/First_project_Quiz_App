@@ -35,7 +35,7 @@ class _FirstpageState extends State<Firstpage> {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 80,
+            height: 40,
           ),
           Container(
             height: 50,
